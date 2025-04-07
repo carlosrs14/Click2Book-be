@@ -30,8 +30,10 @@ class RegisterController extends Controller
 
         return response()->json([
             'message' => 'Usuario registrado con éxito',
+            'user' => $user->name,
             'access_token' => $token,
-            'user' => $user,
+            'token_type' => 'bearer',
+            'expires_in' => JWTAuth::factory()->getTTL() * 60
         ]);
     }
 }
