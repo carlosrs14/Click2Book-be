@@ -3,13 +3,16 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\LoginController;
-use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Auth\UserController;
 
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/register', [RegisterController::class, 'register']);
+// solo para probar
+Route::get('/users', [UserController::class, 'get_all']);
 
-Route::middleware('auth::api')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/register', [UserController::class, 'register']);
+Route::get('/users/{id}', [UserController::class, 'get']);
+
+Route::middleware('auth:api')->group(function () {
+    Route::put('/users/{id}', [UserController::class, 'update']);
+    Route::delete('/users/{id}', [UserController::class, 'delete']);
 });
