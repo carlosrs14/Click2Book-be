@@ -8,7 +8,7 @@ use App\Http\Controllers\Api\Auth\UserController;
 // solo para probar
 Route::get('/users', [UserController::class, 'get_all']);
 
-Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/register', [UserController::class, 'register']);
 Route::get('/users/{id}', [UserController::class, 'get']);
 

@@ -29,7 +29,10 @@ class UserController extends Controller {
 
         return response()->json([
             'mensaje' => 'Usuario registrado con éxito',
-            'user' => $user->name,
+            'user_id' => $user->id,
+            'user_name' => $user->name,
+            'user_email' => $user->email,
+            'user_role' => $user->role,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => JWTAuth::factory()->getTTL() * 60
