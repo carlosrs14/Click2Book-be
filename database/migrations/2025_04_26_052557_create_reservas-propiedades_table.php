@@ -31,7 +31,6 @@ return new class extends Migration
         Schema::create('cuartos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('propiedad_id')->constrained('propiedades')->onDelete('cascade');
-            $table->foreignId('barrio_id')->constrained('barrios')->onDelete('cascade');
             $table->float('valormensual', 2);
             $table->integer('capacidad');
             $table->boolean('tieneaire');
@@ -66,7 +65,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('reserva_id')->constrained()->onDelete('cascade');
             $table->foreignId('tipoestadoreserva_id')->constrained('tiposestadoreserva')->onDelete('cascade');
-            $table->boolean('esActual');
+            $table->boolean('esactual');
             $table->timestamps();
         });
     }

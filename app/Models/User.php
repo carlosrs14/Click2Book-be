@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -62,6 +64,18 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function telefonos() {
+        return $this->hasMany(Telefono::class);
+    }
+
+    public function fotos() {
+        return $this->hasMany(FotoUsuario::class);
+    }
+
+    public function especializacion() {
+        return throw new Exception("not implemented");
     }
 
 }

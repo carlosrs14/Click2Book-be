@@ -29,7 +29,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tipoestadodenuncia_id')->constrained('tiposestadodenuncia')->onDelete('cascade');
             $table->foreignId('denuncia_id')->constrained('denuncias')->onDelete('cascade');
-            $table->boolean('esActual');
+            $table->boolean('esactual');
             $table->timestamps();
         });
     }
