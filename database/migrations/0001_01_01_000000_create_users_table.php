@@ -36,6 +36,32 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+        
+        Schema::create('clientes', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->timestamps();
+        });
+
+        Schema::create('propietarios', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->timestamps();
+        });
+
+        Schema::create('admins', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->timestamps();
+        });
+
+        Schema::create('telefonos', function (Blueprint $table) {
+            $table->id();
+            $table->string('numero');
+            $table->foreignId('user_id')->constrained('users');
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -43,8 +69,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('telefonos');
+        Schema::dropIfExists('admins');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('propietarios');
+        Schema::dropIfExists('users');
     }
 };
