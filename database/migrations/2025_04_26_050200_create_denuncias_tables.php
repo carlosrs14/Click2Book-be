@@ -20,8 +20,8 @@ return new class extends Migration
         Schema::create('denuncias', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
-            $table->foreignId('cliente_id')->constrained()->onDelete('cascade');
-            $table->foreignId('propietario_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_denunciador_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_denunciado_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
 

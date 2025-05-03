@@ -74,8 +74,27 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(FotoUsuario::class);
     }
 
-    public function especializacion() {
-        return throw new Exception("not implemented");
+    public function propiedades() {
+        return $this->hasMany(Propiedad::class);
     }
 
+    public function reservas() {
+        return $this->hasMany(Reserva::class);
+    }
+    
+    public function denuncias_recibidas() {
+        return $this->hasMany(Denuncia::class);
+    }
+
+    public function denuncias_hechas() {
+        return $this->hasMany(Denuncia::class);
+    }
+
+    public function valoraciones() {
+        return $this->hasMany(Valoracion::class);
+    }
+
+    public function reviews() {
+        return $this->hasMany(Review::class);
+    }
 }

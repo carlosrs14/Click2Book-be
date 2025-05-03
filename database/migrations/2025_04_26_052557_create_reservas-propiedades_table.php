@@ -19,7 +19,7 @@ return new class extends Migration
         
         Schema::create('propiedades', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('propietario_id')->constrained('propietarios')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('tipopropiedad_id')->constrained('tipospropiedad')->onDelete('cascade');
             $table->foreignId('barrio_id')->constrained('barrios')->onDelete('cascade');
             $table->boolean('esambientefamiliar');
@@ -54,7 +54,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('pago_id')->nullable();
             $table->foreignId('tiporeserva_id')->constrained('tiposreserva')->onDelete('cascade');
-            $table->foreignId('cliente_id')->constrained('clientes')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('cuarto_id')->constrained('cuartos')->onDelete('cascade');
             $table->date('inicio');
             $table->date('fin');

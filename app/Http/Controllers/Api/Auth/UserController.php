@@ -4,12 +4,32 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller {
+    public function login(Request $request) {
+        $credentials = $request->only('email', 'password');
+        if (!$token = JWTAuth::attempt($credentials)) {
+            return response()->json(['message' => 'Credenciales inválidas'], 401);
+        }
+        $user = JWTAuth::user();
+        // se debe hacer la insersion en la tabla de especializacion
+        
+        return response()->json([
+            'message' => 'Login exitoso',
+            'user_id' => $user->id,
+            'user_name' => $user->name,
+            'user_email' => $user->email,
+            'user_role' => $user->role,
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => JWTAuth::factory()->getTTL() * 60
+            
+        ]);
+    }
+
     public function register(Request $request) {
         $request->validate([
             'name' => 'required|string|max:100',
