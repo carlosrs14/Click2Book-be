@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('tipopropiedad_id')->constrained('tipospropiedad')->onDelete('cascade');
             $table->foreignId('barrio_id')->constrained('barrios')->onDelete('cascade');
+            $table->string('direccion');
             $table->boolean('esambientefamiliar');
             $table->boolean('escupocompleto');
             $table->string('descripcion')->nullable();

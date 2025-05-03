@@ -15,7 +15,7 @@ class Review extends Model
     ];
 
     public function cliente() {
-        return $this->belongsTo(Cliente::class);
+        return $this->belongsTo(User::class);
     }
 
     public function propiedad() {

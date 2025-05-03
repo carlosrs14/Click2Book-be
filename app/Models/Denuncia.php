@@ -15,11 +15,11 @@ class Denuncia extends Model
     ];
 
     public function cliente() {
-        return $this->belongsTo(Cliente::class);
+        return $this->belongsTo(User::class);
     }
 
     public function propietario() {
-        return $this->belongsTo(Propietario::class);
+        return $this->belongsTo(User::class);
     }
 
     public function estadosDenuncia() {

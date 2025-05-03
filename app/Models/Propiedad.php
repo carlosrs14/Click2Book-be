@@ -12,14 +12,15 @@ class Propiedad extends Model
     protected $fillable = [
         'esambientefamiliar',
         'escupocompleto',
+        'direccion',
         'descripcion',
         'propietario_id',
         'tipopropiedad_id',
         'barrio_id'
     ];
 
-    public function prpietario() {
-        return $this->belongsTo(Propietario::class);
+    public function propietario() {
+        return $this->belongsTo(User::class);
     }
 
     public function tipoPropiedad() {
