@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\Extra\ReviewController;
 use App\Http\Controllers\Api\Extra\ValoracionController;
 use App\Http\Controllers\Api\Main\PensionController;
 use App\Http\Controllers\Api\Main\ReservaController;
+use App\Http\Controllers\Api\Usable\BarrioController;
+use App\Http\Controllers\Api\Usable\CiudadController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 
@@ -56,6 +58,9 @@ Route::post('/passowrd/email', [ForgotPasswordController::class, 'sendResetLinkE
 Route::post('/passowrd/reset', [ResetPasswordController::class, 'reset']);
 
 
+Route::get('/ciudades', [CiudadController::class, 'all']);
+Route::get('/ciudades/{id}/barrios', [BarrioController::class, 'filterByCiudad']);
+Route::get('/barrios', [BarrioController::class, 'all']);
 
 // Route::get('/auth/google/redirect', [SocialiteController::class, 'redirectToGoogle']);
 // Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
