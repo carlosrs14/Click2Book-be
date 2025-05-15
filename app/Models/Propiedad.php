@@ -42,4 +42,8 @@ class Propiedad extends Model
     public function cuartos() {
         return $this->hasMany(Cuarto::class);
     }
+
+    public function imagenes() {
+        return $this->hasMany(FotoPropiedad::class);
+    }
 }

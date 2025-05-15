@@ -17,13 +17,13 @@ class PensionController extends Controller
             'esambientefamiliar' => $request->esambientefamiliar,
             'escupocompleto' => $request->escupocompleto,
             'direccion' => $request->direccion,
-            'descripcion' => $request->descripccion,
+            'descripcion' => $request->descripcion,
             'user_id' => $request->user_id,
             'tipopropiedad_id' => $request->tipopropiedad_id,
             'barrio_id' => $request->barrio_id
         ]);
 
-        return response()->json([$propiedad]);
+        return response()->json($propiedad);
     }
 
     public function all() {
@@ -35,7 +35,7 @@ class PensionController extends Controller
         if (!$propiedad) {
             return response()->json(['mensaje' => 'Pension no encontrada'], 404);
         }
-        return response()->json([$propiedad]);
+        return response()->json($propiedad);
         
     }
 
@@ -56,7 +56,7 @@ class PensionController extends Controller
         $propiedad->descripcion = $validated['descripcion']?? $propiedad->descripcion;
         $propiedad->save();
 
-        return response()->json([$propiedad]);
+        return response()->json($propiedad);
     }
 
     public function delete($id) {

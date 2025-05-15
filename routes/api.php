@@ -2,8 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\UserController;
+use App\Http\Controllers\Api\Extra\FotoPensionController;
+use App\Http\Controllers\Api\Extra\FotoUserController;
 use App\Http\Controllers\Api\Main\PensionController;
 use App\Http\Controllers\Api\Main\ReservaController;
+use App\Models\FotoPropiedad;
+use App\Models\FotoUsuario;
 
 // solo para probar
 Route::get('/users', [UserController::class, 'all']);
@@ -28,3 +32,11 @@ Route::get('/propiedades', [PensionController::class, 'all']);
 Route::get('/propiedades/{id}', [PensionController::class, 'get']);
 Route::put('/propiedades/{id}', [PensionController::class, 'update']);
 Route::delete('/propiedades/{id}', [PensionController::class, 'delete']);
+
+
+Route::post('/users/{id}/images', [FotoUserController::class,'subirImagen']);
+Route::delete('/users/{id}/images', [FotoUserController::class,'borrarImagen']);
+
+Route::post('/propiedades/{id}/images', [FotoPensionController::class,'subirImagen']);
+Route::get('/propiedades/{id}/images', [FotoPensionController::class,'listarImagen']);
+Route::delete('/propiedades/images/{img}', [FotoPensionController::class,'borrarImagen']);
