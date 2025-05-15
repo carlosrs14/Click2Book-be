@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\SocialiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\UserController;
 use App\Http\Controllers\Api\Extra\FotoPensionController;
@@ -53,3 +54,8 @@ Route::post('/pensiones/{id}/valoraciones', [ValoracionController::class, 'delet
 
 Route::post('/passowrd/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
 Route::post('/passowrd/reset', [ResetPasswordController::class, 'reset']);
+
+
+
+// Route::get('/auth/google/redirect', [SocialiteController::class, 'redirectToGoogle']);
+// Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
