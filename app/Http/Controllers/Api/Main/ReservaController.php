@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Api\Main;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ReservationConfirmed;
 use App\Models\Reserva;
+use App\Models\User;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ReservaController extends Controller
 {
@@ -17,6 +21,8 @@ class ReservaController extends Controller
             'cuarto_id' => $request->cuarto_id,
             'persona_id' => $request->persona_id,
         ]);
+        $user = User::find($request->persona_id);
+        Mail::to($user->email)->send(new ReservationConfirmed($reserva));
         return response()->json($reserva);
     }
 
