@@ -14,7 +14,7 @@ class Propiedad extends Model
         'escupocompleto',
         'direccion',
         'descripcion',
-        'propietario_id',
+        'user_id',
         'tipopropiedad_id',
         'barrio_id'
     ];

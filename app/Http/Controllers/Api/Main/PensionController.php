@@ -18,7 +18,7 @@ class PensionController extends Controller
             'escupocompleto' => $request->escupocompleto,
             'direccion' => $request->direccion,
             'descripcion' => $request->descripccion,
-            'propietario_id' => $request->propietario_id,
+            'user_id' => $request->user_id,
             'tipopropiedad_id' => $request->tipopropiedad_id,
             'barrio_id' => $request->barrio_id
         ]);
@@ -33,7 +33,7 @@ class PensionController extends Controller
     public function get($id) {
         $propiedad = Propiedad::find($id);
         if (!$propiedad) {
-            return response()->json(['mensaje' => 'Pension no encontrado'], 404);
+            return response()->json(['mensaje' => 'Pension no encontrada'], 404);
         }
         return response()->json([$propiedad]);
         
@@ -42,17 +42,18 @@ class PensionController extends Controller
     public function update(Request $request, $id) {
         $propiedad = Propiedad::find($id);
         if (!$propiedad) {
-            return response();
+            return response()->json(['mensaje' => 'Pension no encontrada'], 404);
         }
 
         $validated = $request->validate([
-            
             'esambientefamiliar' => 'required',
-            'escupocompleto' => 'required'
+            'escupocompleto' => 'required',
+            'descripcion' => 'required'
         ]);
 
-        $propiedad->esamibientefamiliar = $validated['escupocompleto']?? $propiedad->escupocompleto;
+        $propiedad->esambientefamiliar = $validated['esambientefamiliar']?? $propiedad->esambientefamiliar;
         $propiedad->escupocompleto = $validated['escupocompleto']?? $propiedad->escupocompleto;
+        $propiedad->descripcion = $validated['descripcion']?? $propiedad->descripcion;
         $propiedad->save();
 
         return response()->json([$propiedad]);
@@ -64,6 +65,6 @@ class PensionController extends Controller
             return response()->json(['mensaje' => 'Pension no encontrada'], 404);
         }
         $propiedad->delete();
-        return response()->json(['mensaje' => 'Pension no encontrada']);
+        return response()->json(['mensaje' => 'Pension borrada con éxito']);
     }
 }
