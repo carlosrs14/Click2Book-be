@@ -17,7 +17,7 @@ class ReservaController extends Controller
             'cuarto_id' => $request->cuarto_id,
             'persona_id' => $request->persona_id,
         ]);
-        return response()->json([$reserva]);
+        return response()->json($reserva);
     }
 
     public function all() {
@@ -29,7 +29,7 @@ class ReservaController extends Controller
         if (!$reserva) {
             return response()->json(['mensaje' => 'Reserva no encontrada'], 404);
         }
-        return response()->json([$reserva]);
+        return response()->json($reserva);
     }
 
     public function update(Request $request, $id) {
@@ -37,6 +37,17 @@ class ReservaController extends Controller
         if (!$reserva) {
             return response()->json(['mensaje' => 'Reserva no encontrada'], 404);
         }
+
+        $validated = $request->validate([
+            'inicio' => 'required|date',
+            'fin' => 'required|date|after:inicio',
+            'cliente_id' => 'required',
+            'cuarto_id' => 'required',
+            'persona_id' => 'required'
+        ]);
+
+        
+
         $reserva->inicio = $validated['inicio'] ?? $reserva->inicio;
         $reserva->fin = $validated['fin'] ?? $reserva->fin;
         $reserva->pago_id = $validated['pago_id'] ?? $reserva->pago_id;
@@ -49,7 +60,7 @@ class ReservaController extends Controller
     }
     
     public function delete($id) {
-         $reserva = Reserva::find($id);
+        $reserva = Reserva::find($id);
         if (!$reserva) {
             return response()->json(['mensaje' => 'Reserva  no encontrada'], 404);
         }
