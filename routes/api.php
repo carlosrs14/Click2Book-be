@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\Extra\ReviewController;
 use App\Http\Controllers\Api\Extra\ValoracionController;
 use App\Http\Controllers\Api\Main\PensionController;
 use App\Http\Controllers\Api\Main\ReservaController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 // solo para probar
 Route::get('/users', [UserController::class, 'all']);
@@ -48,3 +50,6 @@ Route::delete('/pensiones/{id}/reviews', [ReviewController::class, 'delete']);
 Route::post('/pensiones/{id}/valoraciones', [ValoracionController::class, 'create']);
 Route::post('/pensiones/{id}/valoraciones', [ValoracionController::class, 'delete']);
 
+
+Route::post('/passowrd/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
+Route::post('/passowrd/reset', [ResetPasswordController::class, 'reset']);
