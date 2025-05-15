@@ -36,9 +36,9 @@ Route::delete('/reservas/{id}', [ReservaController::class, 'delete']);
 Route::post('/propiedades', [PensionController::class, 'create']);
 Route::get('/propiedades', [PensionController::class, 'all']);
 Route::get('/propiedades/{id}', [PensionController::class, 'get']);
+Route::get('/propiedades/propietarios/{idPropietario}', [PensionController::class,'filterByOwner']);
 Route::put('/propiedades/{id}', [PensionController::class, 'update']);
 Route::delete('/propiedades/{id}', [PensionController::class, 'delete']);
-
 
 Route::post('/users/{id}/images', [FotoUserController::class,'subirImagen']);
 Route::delete('/users/{id}/images', [FotoUserController::class,'borrarImagen']);
@@ -47,13 +47,13 @@ Route::post('/propiedades/{id}/images', [FotoPensionController::class,'subirImag
 Route::get('/propiedades/{id}/images', [FotoPensionController::class,'listarImagen']);
 Route::delete('/propiedades/images/{img}', [FotoPensionController::class,'borrarImagen']);
 
-Route::post('/pensiones/{id}/reviews', [ReviewController::class, 'create']);
-Route::delete('/pensiones/{id}/reviews', [ReviewController::class, 'delete']);
-Route::get('/pensiones/{id}/reviews', [ReviewController::class, 'filterByPropiedad']);
+Route::post('/propiedades/{id}/reviews', [ReviewController::class, 'create']);
+Route::delete('/propiedades/{id}/reviews', [ReviewController::class, 'delete']);
+Route::get('/propiedades/{id}/reviews', [ReviewController::class, 'filterByPropiedad']);
 
-Route::post('/pensiones/{id}/valoraciones', [ValoracionController::class, 'create']);
-Route::post('/pensiones/{id}/valoraciones', [ValoracionController::class, 'delete']);
-Route::get('/pensiones/{id}/valoraciones', [ReviewController::class, 'filterByPropiedad']);
+Route::post('/propiedades/{id}/valoraciones', [ValoracionController::class, 'create']);
+Route::post('/propiedades/{id}/valoraciones', [ValoracionController::class, 'delete']);
+Route::get('/propiedades/{id}/valoraciones', [ReviewController::class, 'filterByPropiedad']);
 
 
 Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
