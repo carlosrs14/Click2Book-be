@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('proiedad_id')->constrained('propiedades')->onDelete('cascade');
+            $table->foreignId('propiedad_id')->constrained('propiedades')->onDelete('cascade');
             $table->string('contenido');
             $table->timestamps();
         });
@@ -22,7 +22,7 @@ return new class extends Migration
         Schema::create('valoraciones', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('proiedad_id')->constrained('propiedades')->onDelete('cascade');
+            $table->foreignId('propiedad_id')->constrained('propiedades')->onDelete('cascade');
             $table->float('valoracion', 1);
             $table->timestamps();
         });

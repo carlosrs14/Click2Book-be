@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Extra;
 
 use App\Http\Controllers\Controller;
+use App\Models\Propiedad;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,5 +31,13 @@ class ReviewController extends Controller
         $review->delete();
 
         return response()->json(['mensaje' => 'review eliminadad correctamente']);
+    }
+
+    public function filterByPropiedad($id) {
+        $propiedad = Propiedad::find($id);
+        if (!$propiedad) {
+            return response()->json(['mensaje' => 'review no encontrada']);
+        }
+        return response()->json($propiedad->reviews()->get());
     }
 }

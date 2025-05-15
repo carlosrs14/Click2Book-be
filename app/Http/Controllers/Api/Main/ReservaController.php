@@ -22,7 +22,7 @@ class ReservaController extends Controller
             'persona_id' => $request->persona_id,
         ]);
         $user = User::find($request->persona_id);
-        Mail::to($user->email)->send(new ReservationConfirmed($reserva));
+        Mail::to($user->email)->send($reserva);
         return response()->json($reserva);
     }
 

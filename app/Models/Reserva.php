@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Mail\Mailable;
 use Illuminate\Database\Eloquent\Model;
 
 class Reserva extends Model

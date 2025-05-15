@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Extra;
 
 use App\Http\Controllers\Controller;
+use App\Models\Propiedad;
 use App\Models\Valoracion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,5 +31,12 @@ class ValoracionController extends Controller
         $valoracion->delete();
 
         return response()->json(['mensaje' => 'valoracion eliminada correctamente']);
+    }
+        public function filterByPropiedad($id) {
+        $propiedad = Propiedad::find($id);
+        if (!$propiedad) {
+            return response()->json(['mensaje' => 'propiedad no encontrada']);
+        }
+        return response()->json($propiedad->valoraciones()->get());
     }
 }

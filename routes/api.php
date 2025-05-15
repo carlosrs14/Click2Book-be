@@ -49,13 +49,15 @@ Route::delete('/propiedades/images/{img}', [FotoPensionController::class,'borrar
 
 Route::post('/pensiones/{id}/reviews', [ReviewController::class, 'create']);
 Route::delete('/pensiones/{id}/reviews', [ReviewController::class, 'delete']);
+Route::get('/pensiones/{id}/reviews', [ReviewController::class, 'filterByPropiedad']);
 
 Route::post('/pensiones/{id}/valoraciones', [ValoracionController::class, 'create']);
 Route::post('/pensiones/{id}/valoraciones', [ValoracionController::class, 'delete']);
+Route::get('/pensiones/{id}/valoraciones', [ReviewController::class, 'filterByPropiedad']);
 
 
-Route::post('/passowrd/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
-Route::post('/passowrd/reset', [ResetPasswordController::class, 'reset']);
+Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
+Route::post('/password/reset', [ResetPasswordController::class, 'reset']);
 
 
 Route::get('/ciudades', [CiudadController::class, 'all']);
