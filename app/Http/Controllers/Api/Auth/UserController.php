@@ -22,7 +22,7 @@ class UserController extends Controller {
             'user_id' => $user->id,
             'user_name' => $user->name,
             'user_email' => $user->email,
-            'user_role' => $user->role,
+            'rol_id' => $user->rol_id,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => JWTAuth::factory()->getTTL() * 60
@@ -35,14 +35,14 @@ class UserController extends Controller {
             'name' => 'required|string|max:100',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|string',
+            'rol_id' => 'required',
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
+            'rol_id' => $request->rol_id,
         ]);
 
         $token = JWTAuth::fromUser($user);
@@ -52,7 +52,7 @@ class UserController extends Controller {
             'user_id' => $user->id,
             'user_name' => $user->name,
             'user_email' => $user->email,
-            'user_role' => $user->role,
+            'rol_id' => $user->rol_id,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => JWTAuth::factory()->getTTL() * 60

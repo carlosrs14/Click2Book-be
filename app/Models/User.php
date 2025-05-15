@@ -25,7 +25,7 @@ class User extends Authenticatable implements JWTSubject, CanResetPassword
         'name',
         'email',
         'password',
-        'role',
+        'rol_id',
     ];
 
     /**
