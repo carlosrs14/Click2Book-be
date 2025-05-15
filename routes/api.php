@@ -16,8 +16,8 @@ Route::middleware('auth:api')->group(function () {
 });
 
 
-//Route::post('/reservas', [ReservaController::class, 'create']);
+Route::post('/reservas', [ReservaController::class, 'create']);
 Route::get('/reservas', [ReservaController::class, 'all']);
-//Route::get('/reservas/{id}', [ReservaController::class, 'get']);
-//Route::update('/reservas/{id}', [ReservaController::class, 'update']);
-//Route::delete('/reservas/{id}', [ReservaController::class, 'delete']);
+Route::get('/reservas/{id}', [ReservaController::class, 'get']);
+Route::update('/reservas/{id}', [ReservaController::class, 'update']);
+Route::delete('/reservas/{id}', [ReservaController::class, 'delete']);
