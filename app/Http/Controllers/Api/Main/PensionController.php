@@ -39,6 +39,10 @@ class PensionController extends Controller
         
     }
 
+    public function filterByOwner($idPropietario) {
+        return Propiedad::where('user_id', $idPropietario)->get();
+    }
+    
     public function update(Request $request, $id) {
         $propiedad = Propiedad::find($id);
         if (!$propiedad) {
