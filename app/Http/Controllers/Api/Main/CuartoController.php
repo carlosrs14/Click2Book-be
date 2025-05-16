@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cuarto;
+use App\Models\Propiedad;
 use Illuminate\Http\Request;
 
 class CuartoController extends Controller
@@ -35,6 +36,14 @@ class CuartoController extends Controller
             return response()->json(['mensaje' => 'Cuarto no encontrado'], 404);
         }
         return response()->json($cuarto);
+    }
+    
+    public function filterByPropiedad($idPropiedad) {
+        $propiedad = Propiedad::find($idPropiedad);
+        if (!$propiedad) {
+            return response()->json(['mensaje' => 'Propiedad no encontrado'], 404);
+        }
+        return response()->json($propiedad->cuartos()->get());
         
     }
 

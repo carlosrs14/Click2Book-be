@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\Usable\BarrioController;
 use App\Http\Controllers\Api\Usable\CiudadController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Api\Main\CuartoController;
 
 // solo para probar
 Route::get('/users', [UserController::class, 'all']);
@@ -39,6 +40,12 @@ Route::get('/propiedades/{id}', [PensionController::class, 'get']);
 Route::put('/propiedades/{id}', [PensionController::class, 'update']);
 Route::delete('/propiedades/{id}', [PensionController::class, 'delete']);
 
+Route::post('/cuartos', [CuartoController::class, 'create']);
+Route::get('/cuartos', [CuartoController::class, 'all']);
+Route::get('/propiedades/{idPropiedad}/cuartos', [CuartoController::class, 'filterByPropiedad']);
+Route::get('/cuartos/{id}', [CuartoController::class, 'get']);
+Route::put('/cuartos/{id}', [CuartoController::class, 'update']);
+Route::delete('/cuartos/{id}', [CuartoController::class, 'delete']);
 
 Route::post('/users/{id}/images', [FotoUserController::class,'subirImagen']);
 Route::delete('/users/{id}/images', [FotoUserController::class,'borrarImagen']);

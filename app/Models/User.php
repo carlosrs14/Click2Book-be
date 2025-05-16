@@ -98,4 +98,8 @@ class User extends Authenticatable implements JWTSubject, CanResetPassword
     public function reviews() {
         return $this->hasMany(Review::class);
     }
+    
+    public function rol() {
+        return $this->belongsTo(Rol::class);
+    }
 }

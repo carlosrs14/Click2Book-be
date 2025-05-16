@@ -18,11 +18,11 @@ class UserController extends Controller {
         // se debe hacer la insersion en la tabla de especializacion
         
         return response()->json([
-            'message' => 'Login exitoso',
+            'mensaje' => 'Login exitoso',
             'user_id' => $user->id,
             'user_name' => $user->name,
             'user_email' => $user->email,
-            'rol_id' => $user->rol_id,
+            'rol' => $user->rol()->first()->nombre,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => JWTAuth::factory()->getTTL() * 60
@@ -52,7 +52,7 @@ class UserController extends Controller {
             'user_id' => $user->id,
             'user_name' => $user->name,
             'user_email' => $user->email,
-            'rol_id' => $user->rol_id,
+            'rol' => $user->rol()->first()->nombre,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => JWTAuth::factory()->getTTL() * 60
