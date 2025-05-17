@@ -36,7 +36,7 @@ Route::delete('/reservas/{id}', [ReservaController::class, 'delete']);
 Route::post('/propiedades', [PensionController::class, 'create']);
 Route::get('/propiedades', [PensionController::class, 'all']);
 Route::get('/propiedades/{id}', [PensionController::class, 'get']);
-Route::get('/propiedades/propietarios/{idPropietario}', [PensionController::class,'filterByOwner']);
+Route::get('/propietarios/{idPropietario}/propiedades', [PensionController::class,'filterByOwner']);
 Route::put('/propiedades/{id}', [PensionController::class, 'update']);
 Route::delete('/propiedades/{id}', [PensionController::class, 'delete']);
 
