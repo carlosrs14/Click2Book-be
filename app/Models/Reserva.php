@@ -15,11 +15,12 @@ class Reserva extends Model
         'pago_id',
         'cliente_id',
         'cuarto_id',
-        'persona_id'
+        'user_id',
+        'tiporeserva_id'
     ];
 
     public function tipoReserva() {
-        return $this->belongsTo(TipoReserva::class);
+        return $this->belongsTo(TipoReserva::class, 'tiporeserva_id');
     }
 
     public function cliente() {

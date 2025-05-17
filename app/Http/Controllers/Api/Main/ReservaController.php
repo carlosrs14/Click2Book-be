@@ -13,16 +13,19 @@ use Illuminate\Support\Facades\Mail;
 class ReservaController extends Controller
 {
     public function create(Request $request) {
-            $reserva = Reserva::create([
-            'inicio' => $request->inicio,
-            'fin' => $request->fin,
-            'pago_id' => $request->pago_id,
-            'cliente_id' => $request->cliente_id,
-            'cuarto_id' => $request->cuarto_id,
-            'persona_id' => $request->persona_id,
+
+        $data = $request->input('reserva');
+
+        $reserva = Reserva::create([
+            'inicio' => $data['inicio'],
+            'fin' => $data['fin'],
+            'pago_id' => $data['pago_id'] ?? null,
+            'tiporeserva_id' => $data['tiporeserva_id'],
+            'user_id' => $data['user_id'],
+            'cuarto_id' => $data['cuarto_id'],
         ]);
-        $user = User::find($request->persona_id);
-        Mail::to($user->email)->send($reserva);
+        // $user = User::find($request->persona_id);
+        // Mail::to($user->email)->send($reserva);
         return response()->json($reserva);
     }
 
