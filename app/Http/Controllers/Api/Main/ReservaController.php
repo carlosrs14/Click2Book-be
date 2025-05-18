@@ -26,6 +26,7 @@ class ReservaController extends Controller
         ]);
         // $user = User::find($request->persona_id);
         // Mail::to($user->email)->send($reserva);
+        
         return response()->json($reserva);
     }
 
@@ -39,6 +40,14 @@ class ReservaController extends Controller
             return response()->json(['mensaje' => 'Reserva no encontrada'], 404);
         }
         return response()->json($reserva);
+    }
+
+    public function filterByUser($iduser) {
+        $user = User::find($iduser);
+        if (!$user) {
+            return response()->json(['mensaje' => 'User no encontrado'], 404);
+        }
+        return response()->json($user->reservas()->get());
     }
 
     public function update(Request $request, $id) {
