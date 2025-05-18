@@ -23,4 +23,9 @@ class Cuarto extends Model
     public function reservas() {
         return $this->hasMany(Reserva::class);
     }
+
+    public function getValormensualAttribute($value)
+    {
+        return (float) number_format($value, 0, '.', '');
+    }
 }

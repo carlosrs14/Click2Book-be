@@ -16,7 +16,8 @@ class Reserva extends Model
         'cliente_id',
         'cuarto_id',
         'user_id',
-        'tiporeserva_id'
+        'tiporeserva_id',
+        'cantidad_pensionados'
     ];
 
     public function tipoReserva() {

@@ -23,6 +23,7 @@ class ReservaController extends Controller
             'tiporeserva_id' => $data['tiporeserva_id'],
             'user_id' => $data['user_id'],
             'cuarto_id' => $data['cuarto_id'],
+            'cantidad_pensionados' => $data['cantidad_pensionados'],
         ]);
         // $user = User::find($request->persona_id);
         // Mail::to($user->email)->send($reserva);
@@ -61,7 +62,8 @@ class ReservaController extends Controller
             'fin' => 'required|date|after:inicio',
             'cliente_id' => 'required',
             'cuarto_id' => 'required',
-            'persona_id' => 'required'
+            'persona_id' => 'required',
+            'cantidad_pensionados' => 'required'
         ]);
 
         
@@ -72,6 +74,7 @@ class ReservaController extends Controller
         $reserva->cliente_id = $validated['cliente_id'] ?? $reserva->cliente_id;
         $reserva->cuarto_id = $validated['cuarto_id'] ?? $reserva->cuarto_id;
         $reserva->persona_id = $validated['persona_id'] ?? $reserva->persona_id;
+        $reserva->cantiidad_pensionados = $validated['cantidad_pensionados'] ?? $reserva->cantiidad_pensionados;
         $reserva->save();
         return response()->json(['mensaje' => 'Reserva actualizada']);
     
