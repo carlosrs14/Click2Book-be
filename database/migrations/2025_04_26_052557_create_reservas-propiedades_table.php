@@ -57,6 +57,7 @@ return new class extends Migration
             $table->foreignId('tiporeserva_id')->constrained('tiposreserva')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('cuarto_id')->constrained('cuartos')->onDelete('cascade');
+            $table->integer('cantidad_pensionados');
             $table->date('inicio');
             $table->date('fin');
             $table->timestamps();
