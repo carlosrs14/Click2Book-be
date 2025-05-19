@@ -26,7 +26,7 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::delete('/users/{id}', [UserController::class, 'delete']);
 });
-
+Route::get('/users/{id}/reservas', [ReservaController::class, 'filterByUser']);
 
 Route::post('/reservas', [ReservaController::class, 'create']);
 Route::get('/reservas', [ReservaController::class, 'all']);
