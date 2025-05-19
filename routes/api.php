@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Extra\ReviewController;
 use App\Http\Controllers\Api\Extra\ValoracionController;
 use App\Http\Controllers\Api\Main\PensionController;
 use App\Http\Controllers\Api\Main\ReservaController;
+use App\Http\Controllers\Api\Main\TipoPropiedadController;
 use App\Http\Controllers\Api\Usable\BarrioController;
 use App\Http\Controllers\Api\Usable\CiudadController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -36,6 +37,7 @@ Route::delete('/reservas/{id}', [ReservaController::class, 'delete']);
 
 Route::post('/propiedades', [PensionController::class, 'create']);
 Route::get('/propiedades', [PensionController::class, 'all']);
+Route::get('/propiedadesfiltro', [PensionController::class, 'filtrar']);
 Route::get('/propiedades/{id}', [PensionController::class, 'get']);
 Route::get('/propietarios/{idPropietario}/propiedades', [PensionController::class,'filterByOwner']);
 Route::put('/propiedades/{id}', [PensionController::class, 'update']);
@@ -71,6 +73,9 @@ Route::post('/password/reset', [ResetPasswordController::class, 'reset']);
 Route::get('/ciudades', [CiudadController::class, 'all']);
 Route::get('/ciudades/{id}/barrios', [BarrioController::class, 'filterByCiudad']);
 Route::get('/barrios', [BarrioController::class, 'all']);
+
+
+Route::get('/tipos-propiedad', [TipoPropiedadController::class, 'all']);
 
 // Route::get('/auth/google/redirect', [SocialiteController::class, 'redirectToGoogle']);
 // Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);

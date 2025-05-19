@@ -27,7 +27,7 @@ class PensionController extends Controller
     }
 
     public function all() {
-        return Propiedad::all();
+        return response()->json(Propiedad::all());
     }
 
     public function get($id) {
@@ -37,6 +37,10 @@ class PensionController extends Controller
         }
         return response()->json($propiedad);
         
+    }
+
+    public function filtrar(Request $request) {
+
     }
 
     public function filterByOwner($idPropietario) {
