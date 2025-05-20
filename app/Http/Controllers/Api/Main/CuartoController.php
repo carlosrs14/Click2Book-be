@@ -10,15 +10,11 @@ use Illuminate\Http\Request;
 class CuartoController extends Controller
 {
     public function create(Request $request) {
-        $request->validate([
-
-        ]);
-
         $cuarto = Cuarto::create([
             'valormensual' => $request->valormensual,
             'capacidad' => $request->capacidad,
             'tieneaire' => $request->tieneaire,
-            'descripcion' => $request->descripccion,
+            'descripcion' => $request->descripcion,
             'propiedad_id' => $request->propiedad_id,
         ]);
 
