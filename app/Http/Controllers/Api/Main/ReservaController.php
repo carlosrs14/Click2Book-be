@@ -74,7 +74,7 @@ class ReservaController extends Controller
         $reserva->cliente_id = $validated['cliente_id'] ?? $reserva->cliente_id;
         $reserva->cuarto_id = $validated['cuarto_id'] ?? $reserva->cuarto_id;
         $reserva->persona_id = $validated['persona_id'] ?? $reserva->persona_id;
-        $reserva->cantiidad_pensionados = $validated['cantidad_pensionados'] ?? $reserva->cantiidad_pensionados;
+        $reserva->cantidad_pensionados = $validated['cantidad_pensionados'] ?? $reserva->cantidad_pensionados;
         $reserva->save();
         return response()->json(['mensaje' => 'Reserva actualizada']);
     
