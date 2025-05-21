@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Reserva;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -12,13 +13,13 @@ use Illuminate\Queue\SerializesModels;
 class ReservationConfirmed extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $reserva;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(Reserva $reserva)
     {
-        //
+        $this->reserva = $reserva;
     }
 
     /**
@@ -37,7 +38,7 @@ class ReservationConfirmed extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.reservation_confirmed',
         );
     }
 

@@ -25,9 +25,10 @@ class ReservaController extends Controller
             'cuarto_id' => $data['cuarto_id'],
             'cantidad_pensionados' => $data['cantidad_pensionados'],
         ]);
-        // $user = User::find($request->persona_id);
-        // Mail::to($user->email)->send($reserva);
-        
+        $user = User::find($reserva->user_id);
+        if ($user) {
+            Mail::to($user->email)->send(new ReservationConfirmed($reserva));
+        }
         return response()->json($reserva);
     }
 
@@ -65,8 +66,6 @@ class ReservaController extends Controller
             'persona_id' => 'required',
             'cantidad_pensionados' => 'required'
         ]);
-
-        
 
         $reserva->inicio = $validated['inicio'] ?? $reserva->inicio;
         $reserva->fin = $validated['fin'] ?? $reserva->fin;

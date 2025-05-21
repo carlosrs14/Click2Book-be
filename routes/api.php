@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\Usable\CiudadController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Main\CuartoController;
+use Illuminate\Support\Facades\Mail;
 
 // solo para probar
 Route::get('/users', [UserController::class, 'all']);
@@ -76,6 +77,15 @@ Route::get('/barrios', [BarrioController::class, 'all']);
 
 
 Route::get('/tipos-propiedad', [TipoPropiedadController::class, 'all']);
+
+Route::get('/test-email', function() {
+    Mail::raw('Test mail', function($message) {
+        $message->to('crincones589@gmail.com')
+                ->subject('Test SMTP');
+    });
+
+    return 'Email enviado';
+});
 
 // Route::get('/auth/google/redirect', [SocialiteController::class, 'redirectToGoogle']);
 // Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
