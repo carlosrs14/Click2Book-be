@@ -54,8 +54,8 @@ Route::post('/users/{id}/images', [FotoUserController::class,'subirImagen']);
 Route::delete('/users/{id}/images', [FotoUserController::class,'borrarImagen']);
 
 Route::post('/propiedades/{id}/images', [FotoPensionController::class,'subirImagen']);
-Route::get('/propiedades/{id}/images', [FotoPensionController::class,'listarImagen']);
-Route::delete('/propiedades/images/{img}', [FotoPensionController::class,'borrarImagen']);
+Route::get('/propiedades/{id}/images', [FotoPensionController::class,'listarImagenes']);
+Route::delete('/propiedades/images/{id}', [FotoPensionController::class,'borrarImagen']);
 
 Route::post('/propiedades/{id}/reviews', [ReviewController::class, 'create']);
 Route::delete('/propiedades/{id}/reviews', [ReviewController::class, 'delete']);

@@ -20,7 +20,7 @@ class FotoPensionController extends Controller
             return response()->json(['mensaje' => 'Pension no encontrado'], 404);
         }
         $ruta = $request->file('image')->store('pensiones/'.$id, 'public');
-        $img = $propiedad->images()->create(['path'=>$ruta]);
+        $img = $propiedad->imagenes()->create(['url'=>$ruta, 'propiedad_id'=>$id]);
         return response()->json($img);
     }
 
@@ -29,10 +29,10 @@ class FotoPensionController extends Controller
         if (!$propiedad) {
             return response()->json(['mensaje' => 'Pension no encontrado'], 404);
         }
-        $images = $propiedad->images()->get()->map(function ($img) {
+        $images = $propiedad->imagenes()->get()->map(function ($img) {
             return [
                 'id' => $img->id,
-                'url' => asset('storage/' . $img->path),
+                'url' => asset('storage/' . $img->url),
                 'created_at' => $img->created_at,
             ];
         });
@@ -51,7 +51,7 @@ class FotoPensionController extends Controller
         //if ($image->user_id !== auth()->id()) {
         //    return response()->json(['error' => 'No autorizado'], 403);
         //}
-        Storage::disk('public')->delete($imagen->path);
+        Storage::disk('public')->delete($imagen->url);
 
         $imagen->delete();
 

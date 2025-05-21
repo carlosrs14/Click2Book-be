@@ -27,11 +27,11 @@ class PensionController extends Controller
     }
 
     public function all() {
-        return response()->json(Propiedad::all());
+        return response()->json(Propiedad::with('imagenes')->get());
     }
 
     public function get($id) {
-        $propiedad = Propiedad::find($id);
+        $propiedad = Propiedad::with('imagenes')->get()->find($id);
         if (!$propiedad) {
             return response()->json(['mensaje' => 'Pension no encontrada'], 404);
         }
