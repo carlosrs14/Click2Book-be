@@ -48,15 +48,11 @@ class PensionController extends Controller
             $query->where('barrio_id', $request->barrio);
         }
 
-        if ($request->cupoCompleto) {
-            $query->where('escupocompleto', true);
-        }
+        $query->where('escupocompleto', $request->cupoCompleto);
 
-        if ($request->ambienteFamiliar) {
-            $query->where('esambientefamiliar', true);
-        }
+        $query->where('esambientefamiliar', $request->ambienteFamiliar);
 
-        
+        /*
         if ($request->precioMin != 0 || $request->precioMax != 0 || $request->individual || $request->aire) {
             $query->whereHas('cuartos', function ($q) use ($request) {
                 if ($request->precioMin != 0) {
@@ -67,15 +63,16 @@ class PensionController extends Controller
                     $q->where('valormensual', '<=', $request->precioMax);
                 }
 
-                if ($request->individual) {
-                    $q->where('individual', true);
+                if ($request->individual == true) {
+                    $q->where('capacidad', '=', 1);
                 }
 
-                if ($request->aire) {
-                    $q->where('aire', true);
+                if ($request->aire == true) {
+                    $q->where('tieneaire', $request->aire);
                 }
             });
         }
+        */
         $pensiones = $query->get();
         return response()->json($pensiones);
     }
