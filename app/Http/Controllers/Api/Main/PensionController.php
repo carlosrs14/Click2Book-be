@@ -36,11 +36,48 @@ class PensionController extends Controller
             return response()->json(['mensaje' => 'Pension no encontrada'], 404);
         }
         return response()->json($propiedad);
-        
     }
 
     public function filtrar(Request $request) {
+        $query = Propiedad::with('cuartos');
+        if ($request->tipo != 0 ) {
+            $query->where('tipopropiedad_id', $request->tipo);
+        }
 
+        if ($request->barrio != 0) {
+            $query->where('barrio_id', $request->barrio);
+        }
+
+        if ($request->cupoCompleto) {
+            $query->where('escupocompleto', true);
+        }
+
+        if ($request->ambienteFamiliar) {
+            $query->where('esambientefamiliar', true);
+        }
+
+        
+        if ($request->precioMin != 0 || $request->precioMax != 0 || $request->individual || $request->aire) {
+            $query->whereHas('cuartos', function ($q) use ($request) {
+                if ($request->precioMin != 0) {
+                    $q->where('valormensual', '>=', $request->precioMin);
+                }
+
+                if ($request->precioMax != 0) {
+                    $q->where('valormensual', '<=', $request->precioMax);
+                }
+
+                if ($request->individual) {
+                    $q->where('individual', true);
+                }
+
+                if ($request->aire) {
+                    $q->where('aire', true);
+                }
+            });
+        }
+        $pensiones = $query->get();
+        return response()->json($pensiones);
     }
 
     public function filterByOwner($idPropietario) {
